@@ -1,0 +1,134 @@
+# # # Question 1
+#  Question 1.
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def calculate_area(self):
+        return self.width * self.height
+
+    def calculate_perimeter(self):
+        return 2 * (self.width + self.height)
+
+rect = Rectangle(5, 7)
+print("Rectangle Area:", rect.calculate_area())
+print("Rectangle Perimeter:", rect.calculate_perimeter())
+
+# Questions 2
+class School:
+    def __init__(self, name, year_started):
+        self.name = name
+        self.year_started = year_started
+        self.students = []
+        self.teachers = {}
+
+    def add_new_student(self, student_name, class_name):
+        self.students.append({"name": student_name, "class": class_name})
+
+    def add_new_teacher(self, teacher_name, branch):
+        self.teachers[teacher_name] = branch
+
+    def view_student_list(self):
+        print("\nStudent List:")
+        for student in self.students:
+            print(f"Name: {student['name']}, Class: {student['class']}")
+
+    def view_teacher_list(self):
+        print("\nTeacher List:")
+        for name, branch in self.teachers.items():
+            print(f"Name: {name}, Branch: {branch}")
+
+school = School("My School", 1990)
+school.add_new_student("Alice", "10A")
+school.add_new_teacher("Mr. Smith", "Math")
+school.view_student_list()
+school.view_teacher_list()
+ 
+# Question 3
+class Shape:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+class Rectangle(Shape):
+    def calculate_area(self):
+        return self.width * self.height
+
+class Square(Shape):
+    def calculate_area(self):
+        return self.width * self.height  # Width and height are the same for a square
+
+rectangle_shape = Rectangle(4, 6)
+square_shape = Square(5, 5)
+print("\nRectangle Area (Shape):", rectangle_shape.calculate_area())
+print("Square Area:", square_shape.calculate_area())
+
+# Question 4. Vehicle 
+class Mover:
+    def __init__(self, name, model, year):
+        self.brand = name
+        self.model = model
+        self.year = year
+    def __init__(self, name, model, year):
+        self.brand = name
+        self.model = model
+        self.year = year
+class StrongMover(Mover):  # Like an Off-Road Vehicle (SUV)
+    def __init__(self, name, model, year, has_four_wheel_drive):
+        super().__init__(name, model, year)
+        self.four_wheels = has_four_wheel_drive
+
+class FastMover(Mover):  # Like a SportsCar
+    def __init__(self, name, model, year, top_speed):
+        super().__init__(name, model, year)
+        self.max_speed = top_speed
+
+suv_mover = StrongMover("Jeep", "Wrangler", 2022, True)
+sportscar_mover = FastMover("Porsche", "911", 2023, 200)
+
+print("\nStrong Mover:", suv_mover.brand, suv_mover.model, suv_mover.year, "Four Wheels:", suv_mover.four_wheels)
+print("Fast Mover:", sportscar_mover.brand, sportscar_mover.model, sportscar_mover.year, "Top Speed:", sportscar_mover.max_speed)
+
+
+# Question 5. Customer  & Account  
+class Buyer:
+    def __init__(self, first_name, last_name, id_number, phone_number):
+        self.name = first_name
+        self.surname = last_name
+        self.identification = id_number
+        self.phone = phone_number
+
+    def show_my_info(self):
+        print(f"Name: {self.name} {self.surname}, ID: {self.identification}, Phone: {self.phone}")
+
+class MoneyPlace(Buyer):  # Like an Account
+    def __init__(self, buyer_info, account_number, money_amount):
+        super().__init__(buyer_info.name, buyer_info.surname, buyer_info.identification, buyer_info.phone)
+        self.owner = buyer_info
+        self.account_number = account_number
+        self.money = money_amount
+
+    def put_in_money(self, amount):
+        self.money += amount
+        print(f"Put in {amount}. New amount: {self.money}")
+
+    def take_out_money(self, amount):
+        if self.money >= amount:
+            self.money -= amount
+            print(f"Took out {amount}. New amount: {self.money}")
+        else:
+            print("Not enough money.")
+
+    def show_money_amount(self):
+        print(f"Money Amount: {self.money}")
+
+person1 = Buyer("John", "Doe", "123", "555")
+account1 = MoneyPlace(person1, "1001", 1000)
+
+account1.show_my_info()
+account1.show_money_amount()
+account1.put_in_money(500)
+account1.take_out_money(200)
+account1.take_out_money(2000)
+account1.show_money_amount()
